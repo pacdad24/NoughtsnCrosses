@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bkshvfnnp41wl"]
+
+[node name="Cross" type="Polygon2D"]
+offset = Vector2(-362, -194)
+polygon = PackedVector2Array(311, 152, 325, 139, 362, 183, 403, 140, 419, 151, 375, 196, 408, 236, 393, 248, 364, 207, 333, 245, 317, 234, 348, 202)

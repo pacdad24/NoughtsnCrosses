@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bgmniomw3upbq"]
+
+[node name="Nought" type="Polygon2D"]
+polygon = PackedVector2Array(6, -51, 28, -49, 42, -32, 46, -1, 46, 25, 23, 40, -2, 44, -26, 45, -44, 19, -49, -5, -40, -29, -30, -39, -13, -46)
