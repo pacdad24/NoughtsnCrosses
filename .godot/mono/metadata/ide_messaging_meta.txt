@@ -1,0 +1,2 @@
+﻿43571
+/usr/local/bin/godot-engine

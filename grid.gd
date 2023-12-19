@@ -1,5 +1,7 @@
 extends Node2D
 
+signal gameEnded(end: int)
+
 var isCrossTurn: bool = true
 var cellArray: Array[Node]
 var endState: endType
@@ -28,7 +30,7 @@ func _input(event):
 				if not isCellOccupied(closestCell): 
 					closestCell.add_child(turnShape)
 					if checkForEnd():
-						print(endState)
+						gameEnded.emit(endState)
 					else:
 						isCrossTurn = not isCrossTurn
 			
