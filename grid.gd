@@ -4,11 +4,11 @@ signal gameEnded(end: int)
 
 var isCrossTurn: bool = true
 var cellArray: Array[Node]
-var endState: endType
+var gameState: gameStateType = gameStateType.PLAYING
 var crossScene: PackedScene = load("res://cross.tscn")
 var noughtScene: PackedScene = load("res://nought.tscn")
 
-enum endType {NOUGHT, CROSS, DRAW}
+enum gameStateType {NOUGHT, CROSS, DRAW, PLAYING}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +22,7 @@ func _process(delta):
 
 # Main function processing mouse click
 func _input(event):
-	if not endState:
+	if gameState == gameStateType.PLAYING:
 		if event is InputEventMouseButton: 
 			if event.pressed:
 				var turnShape: Polygon2D = getCurrentTurnShape()
@@ -30,7 +30,7 @@ func _input(event):
 				if not isCellOccupied(closestCell): 
 					closestCell.add_child(turnShape)
 					if checkForEnd():
-						gameEnded.emit(endState)
+						gameEnded.emit(gameState)
 					else:
 						isCrossTurn = not isCrossTurn
 			
@@ -63,7 +63,7 @@ func checkForEnd() -> bool:
 	if checkForWin():
 		return true
 	elif isGridFull():
-		endState = endType.DRAW
+		gameState = gameStateType.DRAW
 		return true
 	return false
 	
@@ -92,18 +92,22 @@ func checkLine(cell1: Node2D, cell2: Node2D, cell3: Node2D) -> bool:
 	if isCellOccupied(cell1) and isCellOccupied(cell2) and isCellOccupied(cell3):
 		if cell1.get_path_to(cell1.get_child(0)) == cell2.get_path_to(cell2.get_child(0)) and cell1.get_path_to(cell1.get_child(0)) == cell3.get_path_to(cell3.get_child(0)):
 			if cell1.get_path_to(cell1.get_child(0)).get_name(0) == "Cross":
-				endState = endType.CROSS
+				gameState = gameStateType.CROSS
 			else:
-				endState = endType.NOUGHT
+				gameState = gameStateType.NOUGHT
 			return true
 		else:
 			return false
 	else:
 		return false
+
+
+func _on_restart_button_pressed():
+	clearGrid()
+	gameState = gameStateType.PLAYING
+	isCrossTurn = true
 	
-	
-	
-	
-	
-	
-	
+func clearGrid():
+	for cell in cellArray:
+		if isCellOccupied(cell):
+			cell.get_child(0).queue_free()

@@ -21,3 +21,5 @@ func _on_cells_game_ended(end):
 			text = "draw!"
 	
 	
+func _on_restart_button_pressed():
+	text = ""

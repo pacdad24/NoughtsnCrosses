@@ -1,3 +1,4 @@
+res://RestartButton.gd
 res://main.tscn
 res://grid.gd
 res://EndLabel.gd
