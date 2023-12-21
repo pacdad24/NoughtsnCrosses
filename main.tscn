@@ -1,84 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://byjweofgbiqwk"]
+[gd_scene load_steps=4 format=3 uid="uid://byjweofgbiqwk"]
 
-[ext_resource type="Script" path="res://grid.gd" id="1_7pwur"]
-[ext_resource type="Script" path="res://EndLabel.gd" id="2_wg8rw"]
-[ext_resource type="Script" path="res://RestartButton.gd" id="3_cxq3g"]
+[ext_resource type="Script" path="res://main.gd" id="1_rg1yg"]
+[ext_resource type="Script" path="res://Menu.gd" id="5_7rlwj"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_612hf"]
-font_size = 33
+[sub_resource type="LabelSettings" id="LabelSettings_if7um"]
+font_size = 40
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_rg1yg")
 
-[node name="Grid" type="Node2D" parent="."]
-position = Vector2(575, 325)
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_7rlwj")
 
-[node name="Cells" type="Node2D" parent="Grid"]
-script = ExtResource("1_7pwur")
-
-[node name="Cell1" type="Node2D" parent="Grid/Cells"]
-position = Vector2(-110, -110)
-
-[node name="Cell2" type="Node2D" parent="Grid/Cells"]
-position = Vector2(0, -110)
-
-[node name="Cell3" type="Node2D" parent="Grid/Cells"]
-position = Vector2(110, -110)
-
-[node name="Cell4" type="Node2D" parent="Grid/Cells"]
-position = Vector2(-110, 0)
-
-[node name="Cell5" type="Node2D" parent="Grid/Cells"]
-
-[node name="Cell6" type="Node2D" parent="Grid/Cells"]
-position = Vector2(110, 0)
-
-[node name="Cell7" type="Node2D" parent="Grid/Cells"]
-position = Vector2(-110, 110)
-
-[node name="Cell8" type="Node2D" parent="Grid/Cells"]
-position = Vector2(0, 110)
-
-[node name="Cell9" type="Node2D" parent="Grid/Cells"]
-position = Vector2(110, 110)
-
-[node name="Lines" type="Node2D" parent="Grid"]
-
-[node name="Line1" type="Polygon2D" parent="Grid/Lines"]
-polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
-
-[node name="Line2" type="Polygon2D" parent="Grid/Lines"]
-rotation = -3.14159
-polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
-
-[node name="Line3" type="Polygon2D" parent="Grid/Lines"]
-rotation = 1.5708
-polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
-
-[node name="Line4" type="Polygon2D" parent="Grid/Lines"]
-rotation = -1.5708
-polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
-
-[node name="EndLabel" type="Label" parent="."]
-offset_left = 436.0
-offset_top = 110.0
-offset_right = 704.0
-offset_bottom = 163.0
-label_settings = SubResource("LabelSettings_612hf")
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 84.0
+offset_right = 779.0
+offset_bottom = 139.0
+text = "NOUGHTS n CROSSES"
+label_settings = SubResource("LabelSettings_if7um")
 horizontal_alignment = 1
-uppercase = true
-script = ExtResource("2_wg8rw")
 
-[node name="RestartButton" type="Button" parent="."]
-visible = false
-offset_left = 508.0
-offset_top = 482.0
-offset_right = 646.0
-offset_bottom = 544.0
-text = "NEW GAME"
-script = ExtResource("3_cxq3g")
+[node name="TwoPlayerModeButton" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 493.0
+offset_top = 214.0
+offset_right = 684.0
+offset_bottom = 268.0
+text = "TWO-PLAYER MODE"
 
-[connection signal="gameEnded" from="Grid/Cells" to="EndLabel" method="_on_cells_game_ended"]
-[connection signal="gameEnded" from="Grid/Cells" to="RestartButton" method="_on_cells_game_ended"]
-[connection signal="pressed" from="RestartButton" to="Grid/Cells" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="RestartButton" to="EndLabel" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="Menu/TwoPlayerModeButton" to="." method="_on_two_player_mode_button_pressed"]
+[connection signal="pressed" from="Menu/TwoPlayerModeButton" to="Menu" method="_on_two_player_mode_button_pressed"]

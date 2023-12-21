@@ -1,4 +1,6 @@
-res://RestartButton.gd
+res://Game.gd
 res://main.tscn
-res://grid.gd
-res://EndLabel.gd
+res://Menu.gd
+res://game.tscn
+res://main.gd
+res://ReturnToMenuButton.gd

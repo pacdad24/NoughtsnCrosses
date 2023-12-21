@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhev4k6ll4xfv"]
+
+[ext_resource type="Script" path="res://grid.gd" id="1_4bjxp"]
+[ext_resource type="Script" path="res://EndLabel.gd" id="2_2ywf2"]
+[ext_resource type="Script" path="res://RestartButton.gd" id="3_8ag5d"]
+[ext_resource type="Script" path="res://ReturnToMenuButton.gd" id="4_x3vk2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_612hf"]
+font_size = 33
+
+[node name="Game" type="Node2D"]
+
+[node name="Grid" type="Node2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="Cells" type="Node2D" parent="Grid"]
+script = ExtResource("1_4bjxp")
+
+[node name="Cell1" type="Node2D" parent="Grid/Cells"]
+position = Vector2(-110, -110)
+
+[node name="Cell2" type="Node2D" parent="Grid/Cells"]
+position = Vector2(0, -110)
+
+[node name="Cell3" type="Node2D" parent="Grid/Cells"]
+position = Vector2(110, -110)
+
+[node name="Cell4" type="Node2D" parent="Grid/Cells"]
+position = Vector2(-110, 0)
+
+[node name="Cell5" type="Node2D" parent="Grid/Cells"]
+
+[node name="Cell6" type="Node2D" parent="Grid/Cells"]
+position = Vector2(110, 0)
+
+[node name="Cell7" type="Node2D" parent="Grid/Cells"]
+position = Vector2(-110, 110)
+
+[node name="Cell8" type="Node2D" parent="Grid/Cells"]
+position = Vector2(0, 110)
+
+[node name="Cell9" type="Node2D" parent="Grid/Cells"]
+position = Vector2(110, 110)
+
+[node name="Lines" type="Node2D" parent="Grid"]
+
+[node name="Line1" type="Polygon2D" parent="Grid/Lines"]
+polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
+
+[node name="Line2" type="Polygon2D" parent="Grid/Lines"]
+rotation = -3.14159
+polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
+
+[node name="Line3" type="Polygon2D" parent="Grid/Lines"]
+rotation = 1.5708
+polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
+
+[node name="Line4" type="Polygon2D" parent="Grid/Lines"]
+rotation = -1.5708
+polygon = PackedVector2Array(-71, -129, -71, 142, -55, 139, -52, -128)
+
+[node name="EndLabel" type="Label" parent="."]
+offset_left = 436.0
+offset_top = 110.0
+offset_right = 704.0
+offset_bottom = 163.0
+label_settings = SubResource("LabelSettings_612hf")
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("2_2ywf2")
+
+[node name="RestartButton" type="Button" parent="."]
+visible = false
+offset_left = 400.0
+offset_top = 490.0
+offset_right = 538.0
+offset_bottom = 552.0
+text = "NEW GAME"
+script = ExtResource("3_8ag5d")
+
+[node name="ReturnToMenuButton" type="Button" parent="."]
+visible = false
+offset_left = 583.0
+offset_top = 490.0
+offset_right = 721.0
+offset_bottom = 552.0
+text = "MAIN MENU"
+script = ExtResource("4_x3vk2")
+
+[connection signal="gameEnded" from="Grid/Cells" to="EndLabel" method="_on_cells_game_ended"]
+[connection signal="gameEnded" from="Grid/Cells" to="RestartButton" method="_on_cells_game_ended"]
+[connection signal="gameEnded" from="Grid/Cells" to="ReturnToMenuButton" method="_on_cells_game_ended"]
+[connection signal="pressed" from="RestartButton" to="Grid/Cells" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="EndLabel" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="RestartButton" to="ReturnToMenuButton" method="_on_restart_button_pressed"]
