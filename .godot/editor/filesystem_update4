@@ -1,6 +1,9 @@
-res://Game.gd
-res://main.tscn
-res://Menu.gd
 res://game.tscn
-res://main.gd
-res://ReturnToMenuButton.gd
+res://grid.gd
+res://Cell.gd
+res://Line.gd
+res://Scenes/game.tscn
+res://Scenes/main.tscn
+res://Scripts/WinLine.gd
+res://Scripts/grid.gd
+res://Scripts/main.gd

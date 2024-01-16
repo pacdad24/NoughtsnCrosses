@@ -1,6 +1,6 @@
 extends Node2D
 
-var gameScene: PackedScene = load("res://game.tscn")
+var gameScene: PackedScene = load("res://Scenes/game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

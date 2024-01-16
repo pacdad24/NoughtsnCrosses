@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhev4k6ll4xfv"]
+[gd_scene load_steps=7 format=3 uid="uid://dhev4k6ll4xfv"]
 
-[ext_resource type="Script" path="res://grid.gd" id="1_4bjxp"]
-[ext_resource type="Script" path="res://EndLabel.gd" id="2_2ywf2"]
-[ext_resource type="Script" path="res://RestartButton.gd" id="3_8ag5d"]
-[ext_resource type="Script" path="res://ReturnToMenuButton.gd" id="4_x3vk2"]
+[ext_resource type="Script" path="res://Scripts/grid.gd" id="1_nve74"]
+[ext_resource type="PackedScene" uid="uid://s5dp885h0hof" path="res://Scenes/cell.tscn" id="2_uwktc"]
+[ext_resource type="Script" path="res://Scripts/EndLabel.gd" id="3_clr10"]
+[ext_resource type="Script" path="res://Scripts/RestartButton.gd" id="4_lqebh"]
+[ext_resource type="Script" path="res://Scripts/ReturnToMenuButton.gd" id="5_ytak6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_612hf"]
 font_size = 33
@@ -14,32 +15,32 @@ font_size = 33
 position = Vector2(575, 325)
 
 [node name="Cells" type="Node2D" parent="Grid"]
-script = ExtResource("1_4bjxp")
+script = ExtResource("1_nve74")
 
-[node name="Cell1" type="Node2D" parent="Grid/Cells"]
-position = Vector2(-110, -110)
+[node name="Cell1" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 
-[node name="Cell2" type="Node2D" parent="Grid/Cells"]
+[node name="Cell2" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(0, -110)
 
-[node name="Cell3" type="Node2D" parent="Grid/Cells"]
+[node name="Cell3" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(110, -110)
 
-[node name="Cell4" type="Node2D" parent="Grid/Cells"]
+[node name="Cell4" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(-110, 0)
 
-[node name="Cell5" type="Node2D" parent="Grid/Cells"]
+[node name="Cell5" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
+position = Vector2(0, 0)
 
-[node name="Cell6" type="Node2D" parent="Grid/Cells"]
+[node name="Cell6" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(110, 0)
 
-[node name="Cell7" type="Node2D" parent="Grid/Cells"]
+[node name="Cell7" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(-110, 110)
 
-[node name="Cell8" type="Node2D" parent="Grid/Cells"]
+[node name="Cell8" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(0, 110)
 
-[node name="Cell9" type="Node2D" parent="Grid/Cells"]
+[node name="Cell9" parent="Grid/Cells" instance=ExtResource("2_uwktc")]
 position = Vector2(110, 110)
 
 [node name="Lines" type="Node2D" parent="Grid"]
@@ -67,7 +68,7 @@ offset_bottom = 163.0
 label_settings = SubResource("LabelSettings_612hf")
 horizontal_alignment = 1
 uppercase = true
-script = ExtResource("2_2ywf2")
+script = ExtResource("3_clr10")
 
 [node name="RestartButton" type="Button" parent="."]
 visible = false
@@ -76,7 +77,7 @@ offset_top = 490.0
 offset_right = 538.0
 offset_bottom = 552.0
 text = "NEW GAME"
-script = ExtResource("3_8ag5d")
+script = ExtResource("4_lqebh")
 
 [node name="ReturnToMenuButton" type="Button" parent="."]
 visible = false
@@ -85,7 +86,7 @@ offset_top = 490.0
 offset_right = 721.0
 offset_bottom = 552.0
 text = "MAIN MENU"
-script = ExtResource("4_x3vk2")
+script = ExtResource("5_ytak6")
 
 [connection signal="gameEnded" from="Grid/Cells" to="EndLabel" method="_on_cells_game_ended"]
 [connection signal="gameEnded" from="Grid/Cells" to="RestartButton" method="_on_cells_game_ended"]
